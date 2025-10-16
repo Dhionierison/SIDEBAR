@@ -115,6 +115,32 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+.sidebar-connector::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  border-bottom-right-radius: 8px;
+  box-shadow: 4px 4px 0 4px #E7F0F3;
+  pointer-events: none;
+}
+
+.sidebar-connector::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  border-top-right-radius: 8px;
+  box-shadow: 4px -4px 0 4px #E7F0F3;
+  pointer-events: none;
+}
+
 @layer base {
   /* * {
     @apply border-border outline-ring/50;

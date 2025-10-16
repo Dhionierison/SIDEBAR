@@ -267,6 +267,8 @@ const ConfiguracoesIcon = () => (
   </svg>
 )
 
+
+
 const menuItems = [
   { id: "dashboard", icon: DashboardIcon, label: "Dashboard", href: "#" },
   { id: "tickets", icon: TicketIcon, label: "Tickets", href: "#" },
@@ -288,7 +290,7 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "relative h-screen transition-all duration-300 ease-in-out flex-shrink-0 bg-white border-r border-gray-200",
+        "relative h-screen transition-all duration-600 ease-in-out flex-shrink-0 bg-white border-r border-gray-200",
         isExpanded ? "w-[276px]" : "w-[120px]",
       )}
     >
@@ -319,10 +321,9 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
       </button>
 
       {/* Logo */}
-      
-        <div className={cn("flex items-center", isExpanded ? "justify-center" : "justify-center", "h-30")}>
-          <span className="text-2xl text-center justify-center h-10 w-10 font-bold text-[#1a1a1a]">Logo</span>        
-        </div>
+      <div className={cn("flex items-center", isExpanded ? "justify-center" : "justify-center", "h-30")}>
+        <span className="text-2xl text-center justify-center h-10 w-10 font-bold text-[#1a1a1a]">Logo</span>        
+      </div>
 
       <nav className="flex-1 space-y-2">
         {menuItems.map((item) => {
@@ -334,13 +335,28 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
               key={item.id}
               onClick={() => handleMenuClick(item.id)}
               className={cn(
-                "flex items-center w-full transition-all duration-200 border-0 relative",
+                "flex items-center w-full transition-all duration-200 border-0 relative group",
                 isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
                 isActive 
-                  ? "bg-[#E7F0F3] text-[#2C6B7A] rounded-l-lg border-r-0" 
-                  : "text-[#2C6B7A] hover:bg-gray-100 rounded-lg",
+                  ? "bg-[#E7F0F3] text-[#2C6B7A]" 
+                  : "text-[#2C6B7A] hover:bg-gray-100",
               )}
             >
+              {/* Efeito de conexão com borda para fora */}
+              {isActive && (
+                <>
+                  {/* Top curve */}
+                  <div className="absolute -right-5 top-0 w-4 h-4 overflow-hidden">
+                    <div className="absolute -left-2 top-0 w-4 h-4 bg-[#E7F0F3] rounded-full"></div>
+                  </div>
+                  
+                  {/* Bottom curve */}
+                  <div className="absolute -right-4 bottom-0 w-4 h-4 overflow-hidden">
+                    <div className="absolute -left-2 bottom-0 w-4 h-4 bg-[#E7F0F3] rounded-full"></div>
+                  </div>
+                </>
+              )}
+              
               <div className="flex-shrink-0">
                 <Icon />
               </div>
