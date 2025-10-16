@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 interface SidebarProps {
   defaultExpanded?: boolean;
@@ -346,8 +347,8 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "relative h-screen transition-all duration-600 ease-in-out flex-shrink-0 bg-white border-r border-gray-200",
-        isExpanded ? "w-[276px]" : "w-[120px]"
+        "relative h-screen transition-all shadow-none duration-600 ease-in-out flex-shrink-0 bg-white",
+        isExpanded ? "w-[276px]" : "w-[90px]"
       )}
     >
       <button
@@ -382,59 +383,55 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
         </svg>
       </button>
 
-      {/* Logo */}
-      <div
-        className={cn(
-          "flex items-center",
-          isExpanded ? "justify-center" : "justify-center",
-          "h-30"
-        )}
-      >
-        <span className="text-2xl text-center justify-center h-10 w-10 font-bold text-[#1a1a1a]">
-          Logo
-        </span>
-      </div>
-      
-      <div className="flex-1 px-3 py-4">
-        <nav className="space-y-2">
+    {/* Logo */}
+    <div
+      className={cn(
+        "flex items-center",
+        isExpanded ? "justify-center" : "justify-center",
+        "h-30"
+      )}
+    >
+      <img
+        className="w-28 h-28"
+        src="/br_ticket.svg" 
+        alt="Logo"
+      />
+    </div>
+
+
+      <div className="flex-1 py-4">
+        <nav className="overflow-hidden space-y-2">
           {menuItems.map((item) => {
-            const Icon = item.icon
-            const isActive = activeMenu === item.id
-            
+            const Icon = item.icon;
+            const isActive = activeMenu === item.id;
+
             return (
-              <button
+              <Button
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
                 className={cn(
-                  "flex items-center w-full transition-all duration-200 border-0 relative group",
-                  isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
-                  isActive 
-                    ? "bg-[#E7F0F3] text-[#2C6B7A]" 
-                    : "text-[#2C6B7A] hover:bg-gray-100",
+                  "flex items-center w-full h-16 rounded-l-[12px] transition-all duration-200 border-0 relative group",
+                  isExpanded
+                    ? "gap-4 py-3 pl-4 ml-4"
+                    : "justify-center pl-0 w-[90px] ml-2",
+                  isActive
+                    ? "bg-[#E7F0F3] text-[#0D475A]"
+                    : "text-[#2C6B7A] hover:bg-gray-100"
                 )}
               >
-                {/* Efeito de conexão com borda para fora */}
-                {isActive && (
-                  <>
-                    <div className="absolute -right-5 top-3 w-6 h-6 overflow-hidden">
-                      <div className="absolute -left-3 top-0 w-6 h-6 bg-[#E7F0F3] rounded-tl-[20px] shadow-[4px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
-                    </div>
-                    <div className="absolute -right-5 top-3 bottom-3 w-5 bg-[#E7F0F3] rounded-r-[999px]"></div>
-                    <div className="absolute -right-5 bottom-0 w-6 h-6 overflow-hidden">
-                      <div className="absolute -left-5 w-10 h-6 bg-[#E7F0F3] rounded-bl-[20px] shadow-[4px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
-                    </div>
-                  </>
-                )}
-                
                 <div className="flex-shrink-0">
                   <Icon/>
                 </div>
-                {isExpanded && <span className="text-[15px] font-medium leading-none">{item.label}</span>}
-              </button>
-            )
+                {isExpanded && (
+                  <span className="text-[15px] font-medium leading-none">
+                    {item.label}
+                  </span>
+                )}
+              </Button>
+            );
           })}
         </nav>
       </div>
     </aside>
-  )
+  );
 }
