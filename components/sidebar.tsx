@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface SidebarProps {
-  defaultExpanded?: boolean
+  defaultExpanded?: boolean;
 }
 
 const DashboardIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       opacity="0.4"
       d="M15.3125 12.7604V9.84375C15.3125 7.44663 15.3125 6.24807 14.6504 5.44135C14.5292 5.29368 14.3938 5.15826 14.2462 5.03705C13.4394 4.375 12.2409 4.375 9.84375 4.375C7.44663 4.375 6.24807 4.375 5.44135 5.03705C5.29368 5.15826 5.15826 5.29368 5.03705 5.44135C4.375 6.24807 4.375 7.44663 4.375 9.84375V12.7604C4.375 15.1575 4.375 16.3561 5.03705 17.1628C5.15826 17.3106 5.29368 17.4459 5.44135 17.5671C6.24807 18.2292 7.44663 18.2292 9.84375 18.2292C12.2409 18.2292 13.4394 18.2292 14.2462 17.5671C14.3938 17.4459 14.5292 17.3106 14.6504 17.1628C15.3125 16.3561 15.3125 15.1575 15.3125 12.7604Z"
@@ -44,10 +50,16 @@ const DashboardIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const TicketIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       opacity="0.4"
       d="M27.1883 23.4856L23.4866 27.1873C20.4518 30.2221 18.9344 31.7395 17.0616 32.0178C16.3686 32.1207 15.6562 32.1005 14.9562 31.9578C13.7398 31.7099 12.6414 30.9573 11.1581 29.5974C10.9045 29.3649 10.9279 28.9696 11.1573 28.7402C12.4351 27.4624 12.3744 25.33 11.0217 23.9773C9.66907 22.6247 7.5367 22.564 6.25892 23.8416C6.02949 24.0712 5.63414 24.0945 5.40159 23.8409C4.04171 22.3576 3.28907 21.2592 3.04119 20.0428C2.89857 19.3428 2.87828 18.6303 2.98126 17.9374C3.25956 16.0645 4.77693 14.5472 7.81165 11.5125L11.5134 7.81068C11.8879 7.43623 12.2392 7.08488 12.571 6.7561L28.3289 22.3413C27.9758 22.6982 27.5953 23.0786 27.1883 23.4856Z"
@@ -67,10 +79,16 @@ const TicketIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const SolicitacoesIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       opacity="0.4"
       d="M17.5 32.0834C25.5542 32.0834 32.0833 25.5542 32.0833 17.5001C32.0833 9.44593 25.5542 2.91675 17.5 2.91675C9.44585 2.91675 2.91667 9.44593 2.91667 17.5001C2.91667 25.5542 9.44585 32.0834 17.5 32.0834Z"
@@ -98,10 +116,16 @@ const SolicitacoesIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const ProjetosIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       opacity="0.4"
       d="M14.5833 24.7916V10.2083H2.91667V24.7916C2.91667 26.8334 2.91667 27.8544 3.31403 28.6343C3.66358 29.3203 4.22132 29.878 4.90732 30.2275C5.68721 30.6249 6.70814 30.6249 8.75 30.6249C10.7919 30.6249 11.8128 30.6249 12.5927 30.2275C13.2787 29.878 13.8364 29.3203 14.186 28.6343C14.5833 27.8544 14.5833 26.8334 14.5833 24.7916Z"
@@ -155,10 +179,16 @@ const ProjetosIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const UsuariosIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M22.6042 16.0417C22.6042 13.2227 20.319 10.9375 17.5 10.9375C14.681 10.9375 12.3958 13.2227 12.3958 16.0417C12.3958 18.8606 14.681 21.1458 17.5 21.1458C20.319 21.1458 22.6042 18.8606 22.6042 16.0417Z"
       stroke="#0E475B"
@@ -222,10 +252,16 @@ const UsuariosIcon = () => (
       />
     </g>
   </svg>
-)
+);
 
 const TagsIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       opacity="0.4"
       d="M26.3346 12.4489L24.8762 11.5541C23.414 10.6569 22.6829 10.2083 21.875 10.2083C21.0671 10.2083 20.336 10.6569 18.8737 11.5541L17.4154 12.4489C16.0322 13.2977 15.3405 13.7221 14.9619 14.4059C14.5833 15.0897 14.5833 15.9146 14.5833 17.5644V26.1178C14.5833 28.9299 14.5833 30.336 15.4376 31.2096C16.2919 32.0833 17.6668 32.0833 20.4167 32.0833H23.3333C26.0832 32.0833 27.4581 32.0833 28.3124 31.2096C29.1667 30.336 29.1667 28.9299 29.1667 26.1178V17.5644C29.1667 15.9146 29.1667 15.0897 28.7881 14.4059C28.4095 13.7221 27.7178 13.2977 26.3346 12.4489Z"
@@ -252,11 +288,23 @@ const TagsIcon = () => (
       strokeLinecap="round"
     />
   </svg>
-)
+);
 
 const ConfiguracoesIcon = () => (
-  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="17.5" cy="17.5" r="4.375" stroke="#0E475B" strokeWidth="2.1875" />
+  <svg
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="17.5"
+      cy="17.5"
+      r="4.375"
+      stroke="#0E475B"
+      strokeWidth="2.1875"
+    />
     <path
       d="M28.2917 21.875C28.0194 22.4921 28.15 23.2128 28.5917 23.625L28.6817 23.715C29.0573 24.0906 29.2683 24.5966 29.2683 25.125C29.2683 25.6534 29.0573 26.1594 28.6817 26.535C28.3061 26.9106 27.8001 27.1216 27.2717 27.1216C26.7433 27.1216 26.2373 26.9106 25.8617 26.535L25.7717 26.445C25.3595 26.0033 24.6388 25.8727 24.0217 26.145C23.4046 26.4173 22.9951 27.0312 22.9917 27.715V27.825C22.9917 28.9296 22.0963 29.825 20.9917 29.825C19.8871 29.825 18.9917 28.9296 18.9917 27.825V27.735C18.9883 27.0312 18.5788 26.4173 17.9617 26.145C17.3446 25.8727 16.6239 26.0033 16.2117 26.445L16.1217 26.535C15.7461 26.9106 15.2401 27.1216 14.7117 27.1216C14.1833 27.1216 13.6773 26.9106 13.3017 26.535C12.9261 26.1594 12.7151 25.6534 12.7151 25.125C12.7151 24.5966 12.9261 24.0906 13.3017 23.715L13.3917 23.625C13.8334 23.2128 13.964 22.4921 13.6917 21.875C13.4194 21.2579 12.8055 20.8484 12.1217 20.845H12.0117C10.9071 20.845 10.0117 19.9496 10.0117 18.845C10.0117 17.7404 10.9071 16.845 12.0117 16.845H12.1017C12.8055 16.8416 13.4194 16.4321 13.6917 15.815C13.964 15.1979 13.8334 14.4772 13.3917 14.065L13.3017 13.975C12.9261 13.5994 12.7151 13.0934 12.7151 12.565C12.7151 12.0366 12.9261 11.5306 13.3017 11.155C13.6773 10.7794 14.1833 10.5684 14.7117 10.5684C15.2401 10.5684 15.7461 10.7794 16.1217 11.155L16.2117 11.245C16.6239 11.6867 17.3446 11.8173 17.9617 11.545C18.5788 11.2727 18.9883 10.6588 18.9917 9.975V9.865C18.9917 8.76043 19.8871 7.865 20.9917 7.865C22.0963 7.865 22.9917 8.76043 22.9917 9.865V9.955C22.9951 10.6388 23.4046 11.2527 24.0217 11.525C24.6388 11.7973 25.3595 11.6667 25.7717 11.225L25.8617 11.135C26.2373 10.7594 26.7433 10.5484 27.2717 10.5484C27.8001 10.5484 28.3061 10.7594 28.6817 11.135C29.0573 11.5106 29.2683 12.0166 29.2683 12.545C29.2683 13.0734 29.0573 13.5794 28.6817 13.955L28.5917 14.045C28.15 14.4572 28.0194 15.1779 28.2917 15.795C28.564 16.4121 29.1779 16.8216 29.8617 16.825H29.9717C31.0763 16.825 31.9717 17.7204 31.9717 18.825C31.9717 19.9296 31.0763 20.825 29.9717 20.825H29.8817C29.1779 20.8284 28.564 21.2379 28.2917 21.855"
       stroke="#0E475B"
@@ -265,33 +313,41 @@ const ConfiguracoesIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
-
-
+);
 
 const menuItems = [
   { id: "dashboard", icon: DashboardIcon, label: "Dashboard", href: "#" },
   { id: "tickets", icon: TicketIcon, label: "Tickets", href: "#" },
-  { id: "solicitacoes", icon: SolicitacoesIcon, label: "Solicitações", href: "#" },
+  {
+    id: "solicitacoes",
+    icon: SolicitacoesIcon,
+    label: "Solicitações",
+    href: "#",
+  },
   { id: "projetos", icon: ProjetosIcon, label: "Projetos", href: "#" },
   { id: "usuarios", icon: UsuariosIcon, label: "Usuários", href: "#" },
   { id: "tags", icon: TagsIcon, label: "Tags", href: "#" },
-  { id: "configuracoes", icon: ConfiguracoesIcon, label: "Configurações", href: "#" },
-]
+  {
+    id: "configuracoes",
+    icon: ConfiguracoesIcon,
+    label: "Configurações",
+    href: "#",
+  },
+];
 
 export function Sidebar({ defaultExpanded = true }: SidebarProps) {
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded)
-  const [activeMenu, setActiveMenu] = useState("tickets")
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const [activeMenu, setActiveMenu] = useState("tickets");
 
   const handleMenuClick = (menuId: string) => {
-    setActiveMenu(menuId)
-  }
+    setActiveMenu(menuId);
+  };
 
   return (
     <aside
       className={cn(
         "relative h-screen transition-all duration-600 ease-in-out flex-shrink-0 bg-white border-r border-gray-200",
-        isExpanded ? "w-[276px]" : "w-[120px]",
+        isExpanded ? "w-[276px]" : "w-[120px]"
       )}
     >
       <button
@@ -299,7 +355,13 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
         className="absolute -right-3 top-8 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C6B7A] text-white shadow-lg hover:bg-[#234f5c] transition-colors"
         aria-label={isExpanded ? "Retrair sidebar" : "Expandir sidebar"}
       >
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           {isExpanded ? (
             <path
               d="M8 2L4 6L8 10"
@@ -321,15 +383,23 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
       </button>
 
       {/* Logo */}
-      <div className={cn("flex items-center", isExpanded ? "justify-center" : "justify-center", "h-30")}>
-        <span className="text-2xl text-center justify-center h-10 w-10 font-bold text-[#1a1a1a]">Logo</span>        
+      <div
+        className={cn(
+          "flex items-center",
+          isExpanded ? "justify-center" : "justify-center",
+          "h-30"
+        )}
+      >
+        <span className="text-2xl text-center justify-center h-10 w-10 font-bold text-[#1a1a1a]">
+          Logo
+        </span>
       </div>
 
       <nav className="flex-1 space-y-2">
         {menuItems.map((item) => {
-          const Icon = item.icon
-          const isActive = activeMenu === item.id
-          
+          const Icon = item.icon;
+          const isActive = activeMenu === item.id;
+
           return (
             <button
               key={item.id}
@@ -337,34 +407,41 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
               className={cn(
                 "flex items-center w-full transition-all duration-200 border-0 relative group",
                 isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
-                isActive 
-                  ? "bg-[#E7F0F3] text-[#2C6B7A]" 
-                  : "text-[#2C6B7A] hover:bg-gray-100",
+                isActive
+                  ? "bg-[#E7F0F3] text-[#2C6B7A]"
+                  : "text-[#2C6B7A] hover:bg-gray-100"
               )}
             >
               {/* Efeito de conexão com borda para fora */}
               {isActive && (
                 <>
-                  {/* Top curve */}
-                  <div className="absolute -right-5 top-0 w-4 h-4 overflow-hidden">
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-[#E7F0F3] rounded-full"></div>
+                  {/* Top curva suave */}
+                  <div className="absolute -right-5 top-0 w-6 h-6 overflow-hidden">
+                    <div className="absolute -left-3 top-0 w-6 h-6 bg-[#E7F0F3] rounded-tl-[20px] shadow-[400px_0_6px_-2000px_rgba(0,0,0,0.05)]"></div>
                   </div>
-                  
-                  {/* Bottom curve */}
-                  <div className="absolute -right-4 bottom-0 w-4 h-4 overflow-hidden">
-                    <div className="absolute -left-2 bottom-0 w-4 h-4 bg-[#E7F0F3] rounded-full"></div>
+
+                  {/* Faixa central curvada conectando com o conteúdo */}
+                  <div className="absolute -right-5 top-3 bottom-3 w-5 bg-[#E7F0F3] rounded-r-[999px]"></div>
+
+                  {/* Bottom curva suave */}
+                  <div className="absolute -right-5 bottom-0 w-6 h-6 overflow-hidden">
+                    <div className="absolute -left-3 bottom-0 w-6 h-6 bg-[#E7F0F3] rounded-bl-[20px] shadow-[400px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
                   </div>
                 </>
               )}
-              
+
               <div className="flex-shrink-0">
                 <Icon />
               </div>
-              {isExpanded && <span className="text-[15px] font-medium leading-none">{item.label}</span>}
+              {isExpanded && (
+                <span className="text-[15px] font-medium leading-none">
+                  {item.label}
+                </span>
+              )}
             </button>
-          )
+          );
         })}
       </nav>
     </aside>
-  )
+  );
 }
