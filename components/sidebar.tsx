@@ -279,7 +279,7 @@ const menuItems = [
 
 export function Sidebar({ defaultExpanded = true }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
-  const [activeMenu, setActiveMenu] = useState("tickets") // Estado para controlar o menu ativo
+  const [activeMenu, setActiveMenu] = useState("tickets")
 
   const handleMenuClick = (menuId: string) => {
     setActiveMenu(menuId)
@@ -288,16 +288,13 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "relative h-screen transition-all duration-300 ease-in-out flex-shrink-0",
+        "relative h-screen transition-all duration-300 ease-in-out flex-shrink-0 bg-white border-r border-gray-200",
         isExpanded ? "w-[276px]" : "w-[120px]",
       )}
-      style={{
-        background: "linear-gradient(90deg, #FFFFFF 80.77%, #E7F0F3 87.5%)",
-      }}
     >
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute -right-3 top-8 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C6B7A] text-white shadow-lg hover:bg-[#234f5c] transition-colors"
+        className="absolute -right-3 top-8 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C6B7A] text-white shadow-lg hover:bg-[#234f5c] transition-colors"
         aria-label={isExpanded ? "Retrair sidebar" : "Expandir sidebar"}
       >
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,36 +318,37 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
         </svg>
       </button>
 
-      <div className="flex h-full flex-col px-4 py-6">
-        {/* Logo */}
-        <div className={cn("mb-10 flex items-center", isExpanded ? "justify-center" : "justify-center")}>
-          <span className="text-2xl font-bold text-[#1a1a1a] items-center justify-center">Logo</span>
+      {/* Logo */}
+      
+        <div className={cn("flex items-center", isExpanded ? "justify-center" : "justify-center", "h-30")}>
+          <span className="text-2xl text-center justify-center h-10 w-10 font-bold text-[#1a1a1a]">Logo</span>        
         </div>
 
-        <nav className="flex-1 space-y-2">
-          {menuItems.map((item) => {
-            const Icon = item.icon
-            const isActive = activeMenu === item.id // Verifica se o item está ativo
-            
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleMenuClick(item.id)}
-                className={cn(
-                  "flex items-center w-full rounded-lg transition-all duration-200",
-                  isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
-                  isActive ? "bg-[#E7F0F3] text-[#2C6B7A]" : "text-[#2C6B7A] hover:bg-[#E7F0F3]/40",
-                )}
-              >
-                <div className="flex-shrink-0">
-                  <Icon />
-                </div>
-                {isExpanded && <span className="text-[15px] font-medium leading-none">{item.label}</span>}
-              </button>
-            )
-          })}
-        </nav>
-      </div>
+      <nav className="flex-1 space-y-2">
+        {menuItems.map((item) => {
+          const Icon = item.icon
+          const isActive = activeMenu === item.id
+          
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleMenuClick(item.id)}
+              className={cn(
+                "flex items-center w-full transition-all duration-200 border-0 relative",
+                isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
+                isActive 
+                  ? "bg-[#E7F0F3] text-[#2C6B7A] rounded-l-lg border-r-0" 
+                  : "text-[#2C6B7A] hover:bg-gray-100 rounded-lg",
+              )}
+            >
+              <div className="flex-shrink-0">
+                <Icon />
+              </div>
+              {isExpanded && <span className="text-[15px] font-medium leading-none">{item.label}</span>}
+            </button>
+          )
+        })}
+      </nav>
     </aside>
   )
 }
