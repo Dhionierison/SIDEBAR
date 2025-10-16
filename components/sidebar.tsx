@@ -268,17 +268,22 @@ const ConfiguracoesIcon = () => (
 )
 
 const menuItems = [
-  { icon: DashboardIcon, label: "Dashboard", href: "#" },
-  { icon: TicketIcon, label: "Tickets", href: "#", active: true },
-  { icon: SolicitacoesIcon, label: "Solicitações", href: "#" },
-  { icon: ProjetosIcon, label: "Projetos", href: "#" },
-  { icon: UsuariosIcon, label: "Usuários", href: "#" },
-  { icon: TagsIcon, label: "Tags", href: "#" },
-  { icon: ConfiguracoesIcon, label: "Configurações", href: "#" },
+  { id: "dashboard", icon: DashboardIcon, label: "Dashboard", href: "#" },
+  { id: "tickets", icon: TicketIcon, label: "Tickets", href: "#" },
+  { id: "solicitacoes", icon: SolicitacoesIcon, label: "Solicitações", href: "#" },
+  { id: "projetos", icon: ProjetosIcon, label: "Projetos", href: "#" },
+  { id: "usuarios", icon: UsuariosIcon, label: "Usuários", href: "#" },
+  { id: "tags", icon: TagsIcon, label: "Tags", href: "#" },
+  { id: "configuracoes", icon: ConfiguracoesIcon, label: "Configurações", href: "#" },
 ]
 
 export function Sidebar({ defaultExpanded = true }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
+  const [activeMenu, setActiveMenu] = useState("tickets") // Estado para controlar o menu ativo
+
+  const handleMenuClick = (menuId: string) => {
+    setActiveMenu(menuId)
+  }
 
   return (
     <aside
@@ -318,28 +323,30 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
 
       <div className="flex h-full flex-col px-4 py-6">
         {/* Logo */}
-        <div className={cn("mb-10 flex items-center", isExpanded ? "justify-start px-2" : "justify-center")}>
-          <span className="text-2xl font-bold text-[#1a1a1a]">Logo</span>
+        <div className={cn("mb-10 flex items-center", isExpanded ? "justify-center" : "justify-center")}>
+          <span className="text-2xl font-bold text-[#1a1a1a] items-center justify-center">Logo</span>
         </div>
 
         <nav className="flex-1 space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon
+            const isActive = activeMenu === item.id // Verifica se o item está ativo
+            
             return (
-              <a
-                key={item.label}
-                href={item.href}
+              <button
+                key={item.id}
+                onClick={() => handleMenuClick(item.id)}
                 className={cn(
-                  "flex items-center rounded-lg transition-all duration-200",
+                  "flex items-center w-full rounded-lg transition-all duration-200",
                   isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
-                  item.active ? "bg-[#E7F0F3] text-[#2C6B7A]" : "text-[#2C6B7A] hover:bg-[#E7F0F3]/40",
+                  isActive ? "bg-[#E7F0F3] text-[#2C6B7A]" : "text-[#2C6B7A] hover:bg-[#E7F0F3]/40",
                 )}
               >
                 <div className="flex-shrink-0">
                   <Icon />
                 </div>
                 {isExpanded && <span className="text-[15px] font-medium leading-none">{item.label}</span>}
-              </a>
+              </button>
             )
           })}
         </nav>
