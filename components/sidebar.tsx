@@ -347,7 +347,7 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "relative h-screen transition-all shadow-none duration-600 ease-in-out flex-shrink-0 bg-white",
+        "relative h-screen transition-all shadow-none duration-300 ease-in-out flex-shrink-0 bg-white",
         isExpanded ? "w-[276px]" : "w-[90px]"
       )}
     >
@@ -383,20 +383,36 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
         </svg>
       </button>
 
-    {/* Logo */}
-    <div
+     {/* Logo */}
+      <div
+  className={cn(
+    "flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden",
+    "h-48" // Aumentei de h-40 para h-48
+  )}
+>
+  <div className="relative flex items-center justify-center w-full h-full">
+    {/* Logo expandido */}
+    <img
       className={cn(
-        "flex items-center",
-        isExpanded ? "justify-center" : "justify-center",
-        "h-30"
+        "transition-all duration-300 ease-in-out",
+        isExpanded ? "w-40 h-40 opacity-100" : "w-0 h-0 opacity-0" // Aumentei de w-32 h-32 para w-40 h-40
       )}
-    >
-      <img
-        className="w-28 h-28"
-        src="/br_ticket.svg" 
-        alt="Logo"
-      />
-    </div>
+      src="/br_ticket_expanded.svg"
+      alt="Logo BR Ticket"
+    />
+
+    {/* Logo retraído */}
+    <img
+      className={cn(
+        "transition-all duration-300 ease-in-out absolute",
+        isExpanded ? "w-0 h-0 opacity-0" : "w-16 h-16 opacity-100" // Aumentei de w-12 h-12 para w-16 h-16
+      )}
+      src="/br_ticket.svg"
+      alt="Logo"
+    />
+  </div>
+</div>
+
 
 
       <div className="flex-1 py-4">
@@ -410,7 +426,7 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
                 className={cn(
-                  "flex items-center w-full h-16 rounded-l-[12px] transition-all duration-200 border-0 relative group",
+                  "flex items-center w-full h-16 rounded-l-[12px] transition-all duration-300 border-0 relative group",
                   isExpanded
                     ? "gap-4 py-3 pl-4 ml-4"
                     : "justify-center pl-0 w-[90px] ml-2",
