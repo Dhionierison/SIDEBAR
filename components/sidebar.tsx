@@ -416,17 +416,17 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
               {isActive && (
                 <>
                   {/* Top curva suave */}
-                  <div className="absolute -right-5 top-0 w-6 h-6 overflow-hidden">
+                  {/* <div className="absolute -right-5 top-0 w-6 h-6 overflow-hidden">
                     <div className="absolute -left-3 top-0 w-6 h-6 bg-[#E7F0F3] rounded-tl-[20px] shadow-[400px_0_6px_-2000px_rgba(0,0,0,0.05)]"></div>
-                  </div>
+                  </div> */}
 
                   {/* Faixa central curvada conectando com o conteúdo */}
-                  <div className="absolute -right-5 top-3 bottom-3 w-5 bg-[#E7F0F3] rounded-r-[999px]"></div>
+                  {/* <div className="absolute -right-5 top-3 bottom-3 w-5 bg-[#E7F0F3] rounded-r-[999px]"></div> */}
 
                   {/* Bottom curva suave */}
-                  <div className="absolute -right-5 bottom-0 w-6 h-6 overflow-hidden">
+                  {/* <div className="absolute -right-5 bottom-0 w-6 h-6 overflow-hidden">
                     <div className="absolute -left-3 bottom-0 w-6 h-6 bg-[#E7F0F3] rounded-bl-[20px] shadow-[400px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
-                  </div>
+                  </div> */}
                 </>
               )}
 
