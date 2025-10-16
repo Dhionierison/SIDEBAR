@@ -394,54 +394,47 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
           Logo
         </span>
       </div>
-
-      <nav className="flex-1 space-y-2">
-        {menuItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeMenu === item.id;
-
-          return (
-            <button
-              key={item.id}
-              onClick={() => handleMenuClick(item.id)}
-              className={cn(
-                "flex items-center w-full transition-all duration-200 border-0 relative group",
-                isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
-                isActive
-                  ? "bg-[#E7F0F3] text-[#2C6B7A]"
-                  : "text-[#2C6B7A] hover:bg-gray-100"
-              )}
-            >
-              {/* Efeito de conexão com borda para fora */}
-              {isActive && (
-                <>
-                  {/* Top curva suave */}
-                  {/* <div className="absolute -right-5 top-0 w-6 h-6 overflow-hidden">
-                    <div className="absolute -left-3 top-0 w-6 h-6 bg-[#E7F0F3] rounded-tl-[20px] shadow-[400px_0_6px_-2000px_rgba(0,0,0,0.05)]"></div>
-                  </div> */}
-
-                  {/* Faixa central curvada conectando com o conteúdo */}
-                  {/* <div className="absolute -right-5 top-3 bottom-3 w-5 bg-[#E7F0F3] rounded-r-[999px]"></div> */}
-
-                  {/* Bottom curva suave */}
-                  {/* <div className="absolute -right-5 bottom-0 w-6 h-6 overflow-hidden">
-                    <div className="absolute -left-3 bottom-0 w-6 h-6 bg-[#E7F0F3] rounded-bl-[20px] shadow-[400px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
-                  </div> */}
-                </>
-              )}
-
-              <div className="flex-shrink-0">
-                <Icon />
-              </div>
-              {isExpanded && (
-                <span className="text-[15px] font-medium leading-none">
-                  {item.label}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </nav>
+      
+      <div className="flex-1 px-3 py-4">
+        <nav className="space-y-2">
+          {menuItems.map((item) => {
+            const Icon = item.icon
+            const isActive = activeMenu === item.id
+            
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleMenuClick(item.id)}
+                className={cn(
+                  "flex items-center w-full transition-all duration-200 border-0 relative group",
+                  isExpanded ? "gap-4 px-4 py-3" : "justify-center px-3 py-3",
+                  isActive 
+                    ? "bg-[#E7F0F3] text-[#2C6B7A]" 
+                    : "text-[#2C6B7A] hover:bg-gray-100",
+                )}
+              >
+                {/* Efeito de conexão com borda para fora */}
+                {isActive && (
+                  <>
+                    <div className="absolute -right-5 top-3 w-6 h-6 overflow-hidden">
+                      <div className="absolute -left-3 top-0 w-6 h-6 bg-[#E7F0F3] rounded-tl-[20px] shadow-[4px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
+                    </div>
+                    <div className="absolute -right-5 top-3 bottom-3 w-5 bg-[#E7F0F3] rounded-r-[999px]"></div>
+                    <div className="absolute -right-5 bottom-0 w-6 h-6 overflow-hidden">
+                      <div className="absolute -left-5 w-10 h-6 bg-[#E7F0F3] rounded-bl-[20px] shadow-[4px_0_6px_-2px_rgba(0,0,0,0.05)]"></div>
+                    </div>
+                  </>
+                )}
+                
+                <div className="flex-shrink-0">
+                  <Icon/>
+                </div>
+                {isExpanded && <span className="text-[15px] font-medium leading-none">{item.label}</span>}
+              </button>
+            )
+          })}
+        </nav>
+      </div>
     </aside>
-  );
+  )
 }
