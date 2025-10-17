@@ -344,107 +344,177 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
     setActiveMenu(menuId);
   };
 
+  const getActiveIndex = () => {
+    return menuItems.findIndex((item) => item.id === activeMenu);
+  };
+
+  const activeIndex = getActiveIndex();
+  const isFirstActive = activeIndex === 0;
+  const isLastActive = activeIndex === menuItems.length - 1;
+
   return (
     <aside
       className={cn(
-        "relative h-screen transition-all duration-500 ease-in-out flex-shrink-0 bg-white shadow-none",
+        "relative h-screen transition-all duration-500 ease-in-out flex-shrink-0 shadow-none flex flex-col ",
         isExpanded ? "w-[276px]" : "w-[90px]"
       )}
     >
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute -right-3 top-8 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C6B7A] text-white shadow-lg hover:bg-[#234f5c] transition-colors"
-        aria-label={isExpanded ? "Retrair sidebar" : "Expandir sidebar"}
-      >
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {isExpanded ? (
-            <path
-              d="M8 2L4 6L8 10"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          ) : (
-            <path
-              d="M4 2L8 6L4 10"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-        </svg>
-      </button>
-
-      {/* Logo */}
       <div
         className={cn(
-          "flex items-center justify-center transition-all duration-500 ease-in-out overflow-hidden",
-          "h-28"
+          "overflow-hidden "
+          // isFirstActive && "rounded-br-[12px]"
         )}
       >
-        <div className="w-[256px] h-[112px] py-2.5 bg-white inline-flex justify-center items-center gap-2.5 overflow-hidden">
-          {/* Logo expandido */}
-          <img
-            className={cn(
-              "transition-all duration-500 ease-in-out",
-              isExpanded ? "w-64 h-28 opacity-100" : "w-0 h-0 opacity-0"
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="absolute -right-3 top-8 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C6B7A] text-white shadow-lg hover:bg-[#234f5c] transition-colors"
+          aria-label={isExpanded ? "Retrair sidebar" : "Expandir sidebar"}
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isExpanded ? (
+              <path
+                d="M8 2L4 6L8 10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            ) : (
+              <path
+                d="M4 2L8 6L4 10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             )}
-            src="/br_ticket_expanded.svg"
-            alt="Logo BR Ticket"
-          />
+          </svg>
+        </button>
 
-          {/* Logo retraído */}
-          <img
+        <div
+          className={cn(
+            "flex items-center justify-center transition-all duration-500 ease-in-out overflow-hidden ",
+            isExpanded ? "h-28" : "h-28"
+          )}
+        >
+          <div
             className={cn(
-              "transition-all duration-500 ease-in-out absolute",
-              isExpanded ? "w-16 h-16 opacity-0" : "w-30 h-20 opacity-100"
+              "py-2.5 inline-flex justify-center items-center gap-2.5 overflow-hidden transition-all duration-500",
+              isExpanded ? "w-[256px] h-[112px]" : "w-[90px] h-[112px]"
             )}
-            src="/br_ticket.svg"
-            alt="Logo"
-          />
+          >
+            {/* Logo expandido */}
+            <img
+              className={cn(
+                "transition-all duration-500 ease-in-out",
+                isExpanded ? "w-64 h-28 opacity-100" : "w-0 h-0 opacity-0"
+              )}
+              src="/br_ticket_expanded.svg"
+              alt="Logo BR Ticket"
+            />
+
+            {/* Logo retraído */}
+            <img
+              className={cn(
+                "transition-all duration-500 ease-in-out",
+                isExpanded
+                  ? "w-0 h-0 opacity-0"
+                  : "w-[70px] h-[70px] opacity-100"
+              )}
+              src="/br_ticket.svg"
+              alt="Logo"
+            />
+          </div>
         </div>
       </div>
+      <div className="flex-1 flex flex-col overflow-hidden relative">
+        <div
+          className={cn(
+            "absolute inset-0 pointer-events-none transition-all duration-500",
+            isExpanded
+              ? "bg-[linear-gradient(90deg,_#FFFFFF_80.77%,_#E7F0F3_87.5%)]"
+              : "bg-[linear-gradient(90deg,_#FFFFFF_70%,_#E7F0F3_85%)]"
+          )}
+        />
 
-      <div className="flex-1 py-4">
-        <nav className="overflow-hidden space-y-2">
-          {menuItems.map((item) => {
+        <nav className="flex-1 relative z-10">
+          {menuItems.map((item, index) => {
             const Icon = item.icon;
             const isActive = activeMenu === item.id;
+            const isBeforeActive = index === activeIndex - 1;
+            const isAfterActive = index === activeIndex + 1;
+            const isFirst = index === 0;
+            const isLast = index === menuItems.length - 1;
+
+            let borderRadiusClasses = "";
+
+            if (isActive) {
+              borderRadiusClasses = "rounded-tl-[12px] rounded-bl-[12px]";
+
+              // First item gets bottom-right radius
+              if (isFirst) {
+                borderRadiusClasses += " rounded-br-[12px] rounded-tl-[0px]";
+              }
+              // Last item gets top-right and bottom-right radius
+              else if (isLast) {
+                borderRadiusClasses += " rounded-tr-[12px] rounded-br-[12px]";
+              }
+            } else if (isBeforeActive) {
+              // Item before active gets bottom-right radius
+              borderRadiusClasses = "rounded-br-[12px]";
+            } else if (isAfterActive) {
+              // Item after active gets top-right radius
+              borderRadiusClasses = "rounded-tr-[12px]";
+            }
 
             return (
-              <Button
+              <div
                 key={item.id}
-                onClick={() => handleMenuClick(item.id)}
                 className={cn(
-                  "flex items-center w-full h-16 rounded-l-[12px] transition-all duration-500 border-0 relative group",
-                  isExpanded
-                    ? "gap-4 py-3 pl-4 ml-4"
-                    : "justify-center pl-0 w-[90px] ml-2",
+                  "flex items-center h-16 transition-all duration-500 relative",
                   isActive
                     ? "bg-[#E7F0F3] text-[#0D475A]"
-                    : "text-[#2C6B7A] hover:bg-gray-100"
+                    : "bg-white text-[#2C6B7A] hover:bg-gray-50",
+                  borderRadiusClasses,
+                  isExpanded ? "w-full" : "w-[90px]"
                 )}
               >
-                <div className="flex-shrink-0">
-                  <Icon />
-                </div>
-                {isExpanded && (
-                  <span className="text-[15px] font-medium leading-none">
-                    {item.label}
-                  </span>
-                )}
-              </Button>
+                <Button
+                  onClick={() => handleMenuClick(item.id)}
+                  className={cn(
+                    "flex items-center h-16 transition-all duration-500 border-0 relative bg-transparent hover:bg-transparent shadow-none",
+                    isExpanded
+                      ? "gap-4 py-3 pl-4 w-full justify-start"
+                      : "justify-center w-[90px] px-0",
+                    isActive ? "text-[#0D475A]" : "text-[#2C6B7A]"
+                  )}
+                >
+                  <div className="flex-shrink-0">
+                    <Icon />
+                  </div>
+                  {isExpanded && (
+                    <span className="text-[15px] font-medium leading-none">
+                      {item.label}
+                    </span>
+                  )}
+                </Button>
+              </div>
             );
           })}
         </nav>
+
+        <div
+          className={cn(
+            "flex-1 bg-white relative z-10 min-h-0",
+            isLastActive && "rounded-tr-[12px]"
+          )}
+        />
       </div>
     </aside>
   );

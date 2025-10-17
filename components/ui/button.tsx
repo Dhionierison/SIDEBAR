@@ -20,6 +20,12 @@ const buttonVariants = cva(
           'text-[#2C6B7A] hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800',
         link: 'text-[#2C6B7A] underline-offset-4 hover:underline',
         selected: 'bg-[#E7F0F3] text-[#2C6B7A] shadow-xs',
+        // --- ALTERAÇÕES AQUI ---
+        // Variante para o botão da barra lateral inativo
+        sidebar: 'justify-start text-[#2C6B7A] hover:bg-gray-100 rounded-none w-full border-0',
+        // Variante para o botão da barra lateral ATIVO, com seu novo estilo
+        'sidebar-active':
+          "bg-[#E7F0F3] text-[#0D475A] w-[90.5%] rounded-tl-[10px] rounded-tr-none rounded-br-[20px] rounded-bl-[10px] p-0 justify-start border-0",
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -28,6 +34,10 @@ const buttonVariants = cva(
         icon: 'size-9 w-[35px] h-[35px] flex items-center justify-start',
         'icon-sm': 'size-8 w-[35px] h-[35px] flex items-center justify-start',
         'icon-lg': 'size-10 w-[35px] h-[35px] flex items-center justify-start',
+        // O padding e alinhamento para o estado expandido
+        sidebar: 'w-full pl-6 pr-2.5 py-5 justify-start items-center gap-2.5 overflow-hidden',
+        // O padding e alinhamento para o estado recolhido
+        'sidebar-collapsed': 'w-[90px] pl-0 py-5 justify-center items-center gap-2.5 overflow-hidden',
       },
     },
     defaultVariants: {
