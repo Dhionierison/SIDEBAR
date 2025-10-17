@@ -300,9 +300,9 @@ const ConfiguracoesIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle
-      cx="17.5"
-      cy="17.5"
-      r="4.375"
+      cx="20.5"
+      cy="18.9"
+      r="3.7"
       stroke="#0E475B"
       strokeWidth="2.1875"
     />
