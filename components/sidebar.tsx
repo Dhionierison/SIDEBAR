@@ -512,7 +512,7 @@ export function Sidebar({ defaultExpanded = true }: SidebarProps) {
         <div
           className={cn(
             "flex-1 bg-white relative z-10 min-h-0",
-            isLastActive && "rounded-tr-[12px]"
+            isLastActive && "rounded-tr-[12px] transition-all duration-500 ease-in-out"
           )}
         />
       </div>
